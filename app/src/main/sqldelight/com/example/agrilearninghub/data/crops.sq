@@ -1,0 +1,26 @@
+CREATE TABLE crops (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    nameBn TEXT NOT NULL,
+    image TEXT NOT NULL,
+    scientific_name TEXT NOT NULL,
+    family TEXT NOT NULL,
+    description TEXT NOT NULL,
+    season TEXT NOT NULL,
+    climate TEXT NOT NULL,
+    soil TEXT NOT NULL,
+    seed TEXT NOT NULL,
+    planting TEXT NOT NULL,
+    fertilization TEXT NOT NULL,
+    irrigation TEXT NOT NULL,
+    care TEXT NOT NULL,
+    harvest_time TEXT NOT NULL,
+    market TEXT NOT NULL,
+    nutrition TEXT NOT NULL,
+    uses TEXT NOT NULL,
+    common_diseases TEXT NOT NULL,
+    solutions TEXT NOT NULL
+);
+
+getAllCrops:
+SELECT * FROM crops;

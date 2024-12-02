@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.sqldelight)
     alias(libs.plugins.spotless)
+    alias(libs.plugins.firebase)
 }
 
 android {
@@ -65,6 +66,8 @@ dependencies {
     implementation(libs.bundles.voyager)
     implementation(platform(libs.coil.bom))
     implementation(libs.bundles.coil)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.database)
 
     testImplementation(libs.junit)
     androidTestImplementation(jetpack.bundles.androidTest)
