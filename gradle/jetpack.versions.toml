@@ -1,0 +1,50 @@
+[versions]
+coreKtx = "1.15.0"
+lifecycle = "2.8.7"
+activityCompose = "1.9.3"
+composeBom = "2024.11.00"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+camera = "1.4.0"
+datastore = "1.1.1"
+
+[libraries]
+# core jetpack libraries
+core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+
+# compose libraries
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+materialIcons = { group = "androidx.compose.material", name = "material-icons-extended" }
+material = { group = "androidx.compose.material", name = "material" }
+material3 = { group = "androidx.compose.material3", name = "material3" }
+animation = { group = "androidx.compose.animation", name = "animation" }
+animation-graphics = { group = "androidx.compose.animation", name = "animation-graphics" }
+ui = { group = "androidx.compose.ui", name = "ui" }
+ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+
+# camera
+camera = { group = "androidx.camera", name = "camera-camera2", version.ref = "camera" }
+camera-lifecycle = { group = "androidx.camera", name = "camera-lifecycle", version.ref = "camera" }
+camera-view = { group = "androidx.camera", name = "camera-view", version.ref = "camera" }
+camera-extensions = { group = "androidx.camera", name = "camera-extensions", version.ref = "camera" }
+
+datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
+
+# testing
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+
+[plugins]
+
+[bundles]
+jetpack = ["core-ktx", "lifecycle-runtime-ktx", "activity-compose", "datastore"]
+compose = ["material", "material3", "materialIcons", "animation", "animation-graphics", "ui", "ui-graphics", "ui-tooling-preview"]
+camera = ["camera", "camera-lifecycle", "camera-view", "camera-extensions"]
+androidTest = ["androidx-junit", "androidx-espresso-core", "ui-test-junit4"]
+debug = ["androidx-ui-tooling", "androidx-ui-test-manifest"]
