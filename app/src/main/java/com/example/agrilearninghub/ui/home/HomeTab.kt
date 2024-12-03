@@ -25,6 +25,6 @@ object HomeTab : Tab {
 
     @Composable
     override fun Content() {
-        EmptyScreen("Coming Screen")
+        EmptyScreen("Coming Soon")
     }
 }
