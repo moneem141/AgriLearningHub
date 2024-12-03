@@ -18,4 +18,6 @@ interface CropsRepository {
         id: Long,
         crop: Crops
     )
+
+    suspend fun syncLocalDatabaseFromCloud()
 }

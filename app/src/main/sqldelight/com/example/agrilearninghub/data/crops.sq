@@ -57,3 +57,7 @@ uses = coalesce(:uses, uses),
 commonDiseases = coalesce(:commonDiseases, commonDiseases),
 solutions = coalesce(:solutions, solutions)
 WHERE id = :id;
+
+deleteCrop:
+DELETE FROM crops
+WHERE id = :id;
