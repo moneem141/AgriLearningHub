@@ -15,7 +15,7 @@ object HomeTab : Tab {
         @Composable get() {
             return TabOptions(
                 index = 0u,
-                title = "Home",
+                title = "হোম",
                 icon =
                     rememberVectorPainter(
                         image = Icons.Default.Home
