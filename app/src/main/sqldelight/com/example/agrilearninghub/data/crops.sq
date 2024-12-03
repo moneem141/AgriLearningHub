@@ -3,7 +3,7 @@ CREATE TABLE crops (
     name TEXT NOT NULL,
     nameBn TEXT NOT NULL,
     image TEXT NOT NULL,
-    scientific_name TEXT NOT NULL,
+    scientificName TEXT NOT NULL,
     family TEXT NOT NULL,
     description TEXT NOT NULL,
     season TEXT NOT NULL,
@@ -14,13 +14,50 @@ CREATE TABLE crops (
     fertilization TEXT NOT NULL,
     irrigation TEXT NOT NULL,
     care TEXT NOT NULL,
-    harvest_time TEXT NOT NULL,
+    harvestTime TEXT NOT NULL,
     market TEXT NOT NULL,
     nutrition TEXT NOT NULL,
     uses TEXT NOT NULL,
-    common_diseases TEXT NOT NULL,
+    commonDiseases TEXT NOT NULL,
     solutions TEXT NOT NULL
 );
 
+getCropById:
+SELECT *
+FROM crops
+WHERE id = :id;
+
 getAllCrops:
 SELECT * FROM crops;
+
+insertCrop:
+INSERT INTO crops(name, nameBn, image, scientificName, family, description, season, climate, soil, seed, planting, fertilization, irrigation, care, harvestTime, market, nutrition, uses, commonDiseases, solutions)
+VALUES (:name, :nameBn, :image, :scientificName, :family, :description, :season, :climate, :soil, :seed, :planting, :fertilization, :irrigation, :care, :harvestTime, :market, :nutrition, :uses, :commonDiseases, :solutions);
+
+updateCrop:
+UPDATE crops SET
+name = coalesce(:name, name),
+nameBn = coalesce(:nameBn, nameBn),
+image = coalesce(:image, image),
+scientificName = coalesce(:scientificName, scientificName),
+family = coalesce(:family, family),
+description = coalesce(:description, description),
+season = coalesce(:season, season),
+climate = coalesce(:climate, climate),
+soil = coalesce(:soil, soil),
+seed = coalesce(:seed, seed),
+planting = coalesce(:planting, planting),
+fertilization = coalesce(:fertilization, fertilization),
+irrigation = coalesce(:irrigation, irrigation),
+care = coalesce(:care, care),
+harvestTime = coalesce(:harvestTime, harvestTime),
+market = coalesce(:market, market),
+nutrition = coalesce(:nutrition, nutrition),
+uses = coalesce(:uses, uses),
+commonDiseases = coalesce(:commonDiseases, commonDiseases),
+solutions = coalesce(:solutions, solutions)
+WHERE id = :id;
+
+deleteCrop:
+DELETE FROM crops
+WHERE id = :id;

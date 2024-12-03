@@ -13,6 +13,7 @@ ktlint = "1.4.0"
 spotless = "7.0.0.BETA4"
 firebase = "4.4.2"
 firebase-bom = "33.6.0"
+serialization_version = "1.7.3"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -49,7 +50,11 @@ coil-network-okhttp = { group = "io.coil-kt.coil3", name = "coil-network-okhttp"
 ktlint-core = { group = "com.pinterest.ktlint", name = "ktlint-cli", version.ref = "ktlint" }
 
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
-firebase-database = { group = "com.google.firebase", name = "firebase-database" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore-ktx" }
+
+serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization_version" }
+serialization-json-okio = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json-okio", version.ref = "serialization_version" }
+serialization-protobuf = { module = "org.jetbrains.kotlinx:kotlinx-serialization-protobuf", version.ref = "serialization_version" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -58,6 +63,7 @@ kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "ko
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 firebase = { id = "com.google.gms.google-services", version.ref = "firebase" }
+serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 
 [bundles]
 kotlinx = ["datetime"]
@@ -65,3 +71,4 @@ sqldelight = ["sqldelight-driver", "sqldelight-coroutines-extensions", "sqldelig
 koin = ["koin-android", "koin-androidx-startup", "koin-androidx-compose"]
 voyager = ["voyager-navigator", "voyager-screenmodel", "voyager-tab-navigator", "voyager-transitions", "voyager-koin"]
 coil = ["coil-compose", "coil-network-okhttp"]
+serialization = ["serialization-json", "serialization-json-okio", "serialization-protobuf"]

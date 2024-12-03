@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.sqldelight)
     alias(libs.plugins.spotless)
     alias(libs.plugins.firebase)
+    alias(libs.plugins.serialization)
 }
 
 android {
@@ -67,7 +68,8 @@ dependencies {
     implementation(platform(libs.coil.bom))
     implementation(libs.bundles.coil)
     implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.database)
+    implementation(libs.firebase.firestore)
+    implementation(libs.bundles.serialization)
 
     testImplementation(libs.junit)
     androidTestImplementation(jetpack.bundles.androidTest)
