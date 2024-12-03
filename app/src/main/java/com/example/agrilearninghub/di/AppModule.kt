@@ -11,7 +11,6 @@ import org.koin.dsl.module
 
 val appModule =
     module {
-
         single<SqlDriver> {
             AndroidSqliteDriver(
                 schema = AppDatabase.Schema,
