@@ -29,6 +29,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.FilterQuality
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
@@ -111,7 +112,7 @@ object IndexTab : Tab {
                                 modifier =
                                     Modifier
                                         .padding(horizontal = 16.dp, vertical = 8.dp)
-                                        .clickable { navigator.push(DetailScreen()) },
+                                        .clickable { navigator.push(DetailScreen(crop.id)) },
                                 shape = RoundedCornerShape(8.dp),
                                 elevation = CardDefaults.cardElevation(4.dp)
                             ) {
@@ -119,7 +120,7 @@ object IndexTab : Tab {
                                     headlineContent = { Text(crop.nameBn) },
                                     leadingContent = {
                                         Image(
-                                            painter = rememberAsyncImagePainter(crop.image),
+                                            painter = rememberAsyncImagePainter(crop.image, filterQuality = FilterQuality.High),
                                             contentDescription = "Crop image",
                                             modifier =
                                                 Modifier
