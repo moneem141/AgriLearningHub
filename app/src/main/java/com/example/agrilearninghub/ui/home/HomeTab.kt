@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Button
@@ -45,8 +47,9 @@ object HomeTab : Tab {
     @Composable
     override fun Content() {
         val navigator = LocalTabNavigator.current
+        val scrollState = rememberScrollState()
         Column(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize().verticalScroll(scrollState),
         ) {
             Spacer(modifier = Modifier.size(8.dp))
             Image(
@@ -56,7 +59,6 @@ object HomeTab : Tab {
                     Modifier
                         .size(220.dp)
             )
-            Spacer(modifier = Modifier.weight(1f))
             Column(
                 modifier = Modifier.padding(8.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -67,15 +69,18 @@ object HomeTab : Tab {
                     contentDescription = "Home_Image",
                     modifier =
                         Modifier
-                            .size(120.dp)
+                            .size(80.dp)
                             .padding(start = 8.dp)
                 )
                 Text(text = "এগ্রি লার্নিং হাবে স্বাগতম!", fontSize = 24.sp)
+                Spacer(modifier = Modifier.size(24.dp))
                 Text(
                     text = "এখানে আপনি ফসল, সবজি, উদ্ভিদ এবং চাষাবাদ সম্পর্কিত তথ্যসহ জানতে পারবেন আরো অনেক কিছু!",
                     fontSize = 18.sp,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(horizontal = 16.dp)
                 )
+                Spacer(modifier = Modifier.size(24.dp))
                 Button(
                     onClick = { navigator.current = IndexTab },
                     colors =
