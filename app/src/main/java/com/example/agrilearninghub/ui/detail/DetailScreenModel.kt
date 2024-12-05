@@ -34,7 +34,14 @@ class DetailScreenModel(
                 uses = "",
                 commonDiseases = "",
                 solutions = "",
-                image = ""
+                image = "",
+                tempLow = 0,
+                tempHigh = 0,
+                phLow = 0.0,
+                phHigh = 0.0,
+                seasonEn = "",
+                soilType = "",
+                waterNeeds = ""
             )
     )
 

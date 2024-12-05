@@ -19,7 +19,14 @@ CREATE TABLE crops (
     nutrition TEXT NOT NULL,
     uses TEXT NOT NULL,
     commonDiseases TEXT NOT NULL,
-    solutions TEXT NOT NULL
+    solutions TEXT NOT NULL,
+    tempLow INTEGER NOT NULL,
+    tempHigh INTEGER NOT NULL,
+    phLow REAL NOT NULL,
+    phHigh REAL NOT NULL,
+    seasonEn TEXT NOT NULL,
+    soilType TEXT NOT NULL,
+    waterNeeds TEXT NOT NULL
 );
 
 getCropById:
@@ -31,8 +38,8 @@ getAllCrops:
 SELECT * FROM crops;
 
 insertCrop:
-INSERT INTO crops(name, nameBn, image, scientificName, family, description, season, climate, soil, seed, planting, fertilization, irrigation, care, harvestTime, market, nutrition, uses, commonDiseases, solutions)
-VALUES (:name, :nameBn, :image, :scientificName, :family, :description, :season, :climate, :soil, :seed, :planting, :fertilization, :irrigation, :care, :harvestTime, :market, :nutrition, :uses, :commonDiseases, :solutions);
+INSERT INTO crops (name, nameBn, image, scientificName, family, description, season, climate, soil, seed, planting, fertilization, irrigation, care, harvestTime, market, nutrition, uses, commonDiseases, solutions, tempLow, tempHigh, phLow, phHigh, seasonEn, soilType, waterNeeds)
+VALUES (:name, :nameBn, :image, :scientificName, :family, :description, :season, :climate, :soil, :seed, :planting, :fertilization, :irrigation, :care, :harvestTime, :market, :nutrition, :uses, :commonDiseases, :solutions, :tempLow, :tempHigh, :phLow, :phHigh, :seasonEn, :soilType, :waterNeeds);
 
 updateCrop:
 UPDATE crops SET
@@ -55,7 +62,14 @@ market = coalesce(:market, market),
 nutrition = coalesce(:nutrition, nutrition),
 uses = coalesce(:uses, uses),
 commonDiseases = coalesce(:commonDiseases, commonDiseases),
-solutions = coalesce(:solutions, solutions)
+solutions = coalesce(:solutions, solutions),
+tempLow = coalesce(:tempLow, tempLow),
+tempHigh = coalesce(:tempHigh, tempHigh),
+phLow = coalesce(:phLow, phLow),
+phHigh = coalesce(:phHigh, phHigh),
+seasonEn = coalesce(:seasonEn, seasonEn),
+soilType = coalesce(:soilType, soilType),
+waterNeeds = coalesce(:waterNeeds, waterNeeds)
 WHERE id = :id;
 
 deleteCrop:

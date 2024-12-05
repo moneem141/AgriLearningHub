@@ -30,7 +30,7 @@ import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
 import com.example.agrilearninghub.ui.home.HomeTab
 import com.example.agrilearninghub.ui.index.IndexTab
-import com.example.agrilearninghub.ui.more.MoreTab
+import com.example.agrilearninghub.ui.more.RecommendationTab
 
 object RootScreen : Screen {
     private fun readResolve(): Any = RootScreen
@@ -39,7 +39,7 @@ object RootScreen : Screen {
         listOf(
             HomeTab,
             IndexTab,
-            MoreTab
+            RecommendationTab
         )
 
     @Composable

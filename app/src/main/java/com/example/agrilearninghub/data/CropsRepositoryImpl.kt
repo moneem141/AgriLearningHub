@@ -13,6 +13,7 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.buildJsonObject
+import java.util.Locale
 
 class CropsRepositoryImpl(
     private val db: AppDatabase,
@@ -62,7 +63,14 @@ class CropsRepositoryImpl(
                 nutrition = crop.nutrition,
                 uses = crop.uses,
                 commonDiseases = crop.commonDiseases,
-                solutions = crop.solutions
+                solutions = crop.solutions,
+                tempLow = crop.tempLow,
+                tempHigh = crop.tempHigh,
+                phLow = crop.phLow,
+                phHigh = crop.phHigh,
+                seasonEn = crop.seasonEn.uppercase(Locale.ROOT),
+                soilType = crop.soilType.uppercase(Locale.ROOT),
+                waterNeeds = crop.waterNeeds.uppercase(Locale.ROOT)
             )
         }
     }
@@ -93,7 +101,14 @@ class CropsRepositoryImpl(
                 nutrition = crop.nutrition,
                 uses = crop.uses,
                 commonDiseases = crop.commonDiseases,
-                solutions = crop.solutions
+                solutions = crop.solutions,
+                tempLow = crop.tempLow,
+                tempHigh = crop.tempHigh,
+                phLow = crop.phLow,
+                phHigh = crop.phHigh,
+                seasonEn = crop.seasonEn.uppercase(Locale.ROOT),
+                soilType = crop.soilType.uppercase(Locale.ROOT),
+                waterNeeds = crop.waterNeeds.uppercase(Locale.ROOT)
             )
         }
     }
@@ -147,7 +162,14 @@ class CropsRepositoryImpl(
                             nutrition = cloudCrop.nutrition,
                             uses = cloudCrop.uses,
                             commonDiseases = cloudCrop.commonDiseases,
-                            solutions = cloudCrop.solutions
+                            solutions = cloudCrop.solutions,
+                            tempLow = cloudCrop.tempLow,
+                            tempHigh = cloudCrop.tempHigh,
+                            phLow = cloudCrop.phLow,
+                            phHigh = cloudCrop.phHigh,
+                            seasonEn = cloudCrop.seasonEn.uppercase(Locale.ROOT),
+                            soilType = cloudCrop.soilType.uppercase(Locale.ROOT),
+                            waterNeeds = cloudCrop.waterNeeds.uppercase(Locale.ROOT)
                         )
                     } else {
                         db.cropsQueries.updateCrop(
@@ -171,7 +193,14 @@ class CropsRepositoryImpl(
                             nutrition = cloudCrop.nutrition,
                             uses = cloudCrop.uses,
                             commonDiseases = cloudCrop.commonDiseases,
-                            solutions = cloudCrop.solutions
+                            solutions = cloudCrop.solutions,
+                            tempLow = cloudCrop.tempLow,
+                            tempHigh = cloudCrop.tempHigh,
+                            phLow = cloudCrop.phLow,
+                            phHigh = cloudCrop.phHigh,
+                            seasonEn = cloudCrop.seasonEn.uppercase(Locale.ROOT),
+                            soilType = cloudCrop.soilType.uppercase(Locale.ROOT),
+                            waterNeeds = cloudCrop.waterNeeds.uppercase(Locale.ROOT)
                         )
                     }
                 }

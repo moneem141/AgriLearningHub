@@ -24,5 +24,12 @@ data class FirestoreCrops(
     val nutrition: String = "",
     val uses: String = "",
     val commonDiseases: String = "",
-    val solutions: String = ""
+    val solutions: String = "",
+    val tempLow: Long = 0,
+    val tempHigh: Long = 0,
+    val phLow: Double = 0.0,
+    val phHigh: Double = 0.0,
+    val seasonEn: String = "",
+    val soilType: String = "",
+    val waterNeeds: String = ""
 )
