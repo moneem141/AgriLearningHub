@@ -9,6 +9,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,9 +21,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.example.agrilearninghub.R
+import com.example.agrilearninghub.ui.index.IndexTab
 
 object HomeTab : Tab {
     private fun readResolve(): Any = HomeTab
@@ -39,6 +44,7 @@ object HomeTab : Tab {
 
     @Composable
     override fun Content() {
+        val navigator = LocalTabNavigator.current
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
@@ -66,11 +72,23 @@ object HomeTab : Tab {
                 )
                 Text(text = "এগ্রি লার্নিং হাবে স্বাগতম!", fontSize = 24.sp)
                 Text(
-                    text = "এখানে আপনি ফসল, সবজি, উদ্ভিদ, চাষাবাদ সম্পর্কিত তথ্য এবং আরও অনেক কিছু শিখতে পারবেন!",
+                    text = "এখানে আপনি ফসল, সবজি, উদ্ভিদ এবং চাষাবাদ সম্পর্কিত তথ্যসহ জানতে পারবেন আরো অনেক কিছু!",
                     fontSize = 18.sp,
                     textAlign = TextAlign.Center
                 )
-                Text(text = "চলুন শুরু করা যাক।", fontSize = 18.sp)
+                Button(
+                    onClick = { navigator.current = IndexTab },
+                    colors =
+                        ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                            contentColor = MaterialTheme.colorScheme.onBackground
+                        )
+                ) {
+                    Text(
+                        text = "চলুন শুরু করা যাক",
+                        fontSize = 18.sp
+                    )
+                }
             }
             Spacer(modifier = Modifier.weight(1f))
             Image(
