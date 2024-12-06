@@ -143,8 +143,8 @@ class RecommendationScreenModel(
             val ph = crop.phLow <= mutableState.value.ph.toDouble() && mutableState.value.ph.toDouble() <= crop.phHigh
             val season = mutableState.value.seasonEn?.let { crop.seasonEn.contains(it, ignoreCase = true) } ?: true
             val soil = mutableState.value.soilTypeEn?.let { crop.soilType.contains(it, ignoreCase = true) } ?: true
-            // val waterNeeds = mutableState.value.waterNeeds?.let { crop.waterNeeds == it } ?: true
-            temp && ph && soil && season
+            val waterNeeds = mutableState.value.waterNeedsEn?.let { crop.waterNeeds.contains(it, ignoreCase = true) } ?: true
+            temp && ph && soil && season && waterNeeds
         }
     }
 
