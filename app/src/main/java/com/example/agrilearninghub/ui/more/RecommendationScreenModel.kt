@@ -22,6 +22,7 @@ class RecommendationScreenModel(
         val isSeasonDropdownExpanded: Boolean = false,
         val isSoilDropdownExpanded: Boolean = false,
         val isWaterNeedsDropdownExpanded: Boolean = false,
+        val showRecommendation: Boolean = false
     )
 
     init {
@@ -93,7 +94,7 @@ class RecommendationScreenModel(
         }
     }
 
-    fun syncLocalDatabaseFromCloud() {
+    private fun syncLocalDatabaseFromCloud() {
         screenModelScope.launch {
             repository.syncLocalDatabaseFromCloud()
             val crops = repository.getAllCrops()
@@ -106,13 +107,38 @@ class RecommendationScreenModel(
         }
     }
 
-    private fun filterCrops(
-        crops: List<Crops>,
-        query: String?
-    ): List<Crops> {
-        if (query.isNullOrEmpty()) return crops
+    fun filterCrops() {
+        val crops = mutableState.value.crops
+        val filteredCrops = filterCrops(crops)
+        mutableState.update { state ->
+            state.copy(
+                filteredCrops = filteredCrops
+            )
+        }
+    }
+
+    private fun filterCrops(crops: List<Crops>): List<Crops> {
         return crops.filter { crop ->
-            crop.name.contains(query, ignoreCase = true) || crop.nameBn.contains(query, ignoreCase = true)
+            val temp = crop.tempLow <= mutableState.value.temp.toLong() && state.value.temp.toLong() <= crop.tempHigh
+            val ph = crop.phLow <= mutableState.value.ph.toDouble() && mutableState.value.ph.toDouble() <= crop.phHigh
+            val soil = mutableState.value.soilType?.let { crop.soilType == it } ?: true
+            temp && ph && soil
+        }
+    }
+
+    fun showRecommendation() {
+        mutableState.update { state ->
+            state.copy(
+                showRecommendation = true
+            )
+        }
+    }
+
+    fun hideRecommendation() {
+        mutableState.update { state ->
+            state.copy(
+                showRecommendation = false
+            )
         }
     }
 }

@@ -1,19 +1,28 @@
 package com.example.agrilearninghub.ui.more
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -21,7 +30,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.FilterQuality
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -30,7 +42,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cafe.adriel.voyager.koin.koinScreenModel
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
+import coil3.compose.rememberAsyncImagePainter
 import com.example.agrilearninghub.R
+import com.example.agrilearninghub.data.Crops
 import com.example.agrilearninghub.data.Season
 import com.example.agrilearninghub.data.Soil
 import com.example.agrilearninghub.data.WaterNeeds
@@ -160,7 +174,7 @@ object RecommendationTab : Tab {
                 }
                 Spacer(modifier = Modifier.size(16.dp))
                 Button(
-                    onClick = { },
+                    onClick = { screenModel.filterCrops() },
                     colors =
                         ButtonDefaults.buttonColors(
                             containerColor = Color(0xFF63A002),
@@ -172,6 +186,56 @@ object RecommendationTab : Tab {
                         fontSize = 18.sp,
                         color = Color.White
                     )
+                }
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun Dialog(
+    onDismiss: () -> Unit,
+    crops: List<Crops>? = null
+) {
+    BasicAlertDialog(
+        onDismissRequest = onDismiss,
+    ) {
+        if (crops == null) {
+            Text("কোন ফসল পাওয়া যায়নি")
+        } else {
+            LazyColumn(
+                modifier = Modifier.fillMaxSize()
+            ) {
+                items(
+                    items = crops,
+                    key = { crop -> crop.id }
+                ) { crop ->
+                    Card(
+                        modifier =
+                            Modifier
+                                .padding(horizontal = 16.dp, vertical = 8.dp)
+                                .clickable {
+                                    // navigator.push(DetailScreen(crop.id))
+                                },
+                        shape = RoundedCornerShape(8.dp),
+                        elevation = CardDefaults.cardElevation(4.dp)
+                    ) {
+                        ListItem(
+                            headlineContent = { Text(crop.nameBn) },
+                            leadingContent = {
+                                Image(
+                                    painter = rememberAsyncImagePainter(crop.image, filterQuality = FilterQuality.High),
+                                    contentDescription = "Crop image",
+                                    modifier =
+                                        Modifier
+                                            .size(56.dp)
+                                            .clip(shape = MaterialTheme.shapes.extraSmall),
+                                    contentScale = ContentScale.Crop
+                                )
+                            }
+                        )
+                    }
                 }
             }
         }
